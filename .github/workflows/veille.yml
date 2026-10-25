@@ -2,7 +2,7 @@ name: Veille informatique
 
 on:
   schedule:
-    - cron: "0 7 * * *"   # tous les jours à 7h UTC = 8h à Paris (heure d'hiver)
+    - cron: "0 6 * * *"   # 6h UTC = 7h à Paris en hiver, 8h en été
   workflow_dispatch:
     inputs:
       mode:
@@ -13,11 +13,11 @@ on:
 
 jobs:
   veille:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15   # coupe le job s'il se bloque
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
